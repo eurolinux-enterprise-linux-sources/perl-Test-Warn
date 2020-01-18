@@ -1,26 +1,34 @@
 Name:           perl-Test-Warn
 Version:        0.24
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Perl extension to test methods for warnings
 Group:          Development/Libraries
 License:        GPL+ or Artistic
 URL:            http://search.cpan.org/dist/Test-Warn/
 Source0:        http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Test-Warn-%{version}.tar.gz
 BuildArch:      noarch
+BuildRequires:  perl
 BuildRequires:  perl(base)
 BuildRequires:  perl(Carp) >= 1.22
+BuildRequires:  perl(constant)
 BuildRequires:  perl(Exporter)
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(strict)
 BuildRequires:  perl(Sub::Uplevel) >= 0.12
+BuildRequires:  perl(Test)
 BuildRequires:  perl(Test::Builder) >= 0.13
 BuildRequires:  perl(Test::Builder::Tester) >= 1.02
 BuildRequires:  perl(Test::More)
-BuildRequires:  perl(Test::Pod)
+BuildRequires:  perl(Test::Pod) >= 1.14
 BuildRequires:  perl(Tree::DAG_Node) >= 1.02
+BuildRequires:  perl(warnings)
 Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
-Requires:       perl(Test::Builder::Tester) >= 1.02
+Requires:       perl(Test::Builder) >= 0.13
 Requires:       perl(Tree::DAG_Node) >= 1.02
+
+# Filter under-specified dependencies
+%global __requires_exclude %{?__requires_exclude:%__requires_exclude|}^perl\\((Test::Builder|Tree::DAG_Node)\\)$
 
 %description
 This module provides a few convenience methods for testing warning
@@ -48,6 +56,13 @@ make test
 %{_mandir}/man3/Test::Warn.3pm*
 
 %changelog
+* Wed Aug 12 2015 Scientific Linux Auto Patch Process <SCIENTIFIC-LINUX-DEVEL@LISTSERV.FNAL.GOV>
+- Eliminated rpmbuild "bogus date" error due to inconsistent weekday,
+  by assuming the date is correct and changing the weekday.
+
+* Mon May 04 2015 Petr Pisar <ppisar@redhat.com> - 0.24-6
+- Specify all dependencies (bug #1066456)
+
 * Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.24-5
 - Mass rebuild 2013-12-27
 
