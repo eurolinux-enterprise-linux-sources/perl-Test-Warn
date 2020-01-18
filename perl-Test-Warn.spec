@@ -1,6 +1,6 @@
 Name:           perl-Test-Warn
 Version:        0.24
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Perl extension to test methods for warnings
 Group:          Development/Libraries
 License:        GPL+ or Artistic
@@ -48,6 +48,9 @@ make test
 %{_mandir}/man3/Test::Warn.3pm*
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.24-5
+- Mass rebuild 2013-12-27
+
 * Wed Nov 21 2012 Jitka Plesnikova <jplesnik@redhat.com> - 0.24-4
 - Convert end-of-lines in Changes
 
